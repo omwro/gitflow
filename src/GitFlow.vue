@@ -3,10 +3,9 @@
         <div v-for="item in items" :key="item.id" class="row">
             <template v-if="item.tag">
                 <Tag :color="colors[item.line]" :message="item.tag"/>
-                <div :class="'hline hl-h color'+item.line"></div>
+                <HorizontalLine half :index="item.line" :color="colors[item.line]"/>
             </template>
             <Spacer v-else/>
-
             <div class="flow">
                 <template v-for="i in item.line">
                     <template v-if="i === item.line">
@@ -40,8 +39,8 @@
                                 <div :key="i" :class="'block block-mobile color'+i">
                                     <VerticalLine :index="i" top :color="colors[i]"/>
                                     <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <div :class="'hline hl-l hl-h color'+item.line"></div>
-                                    <div :class="'hline hl-r hl-h color'+item.line"></div>
+                                    <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
+                                    <HorizontalLine right half :index="item.line" :color="colors[item.line]"/>
                                 </div>
                             </template>
                             <template v-else-if="i === item.start">
@@ -49,8 +48,8 @@
                                     <TransparentBackground right :color="colors[item.line]"/>
                                     <VerticalLine :index="i" top :color="colors[i]"/>
                                     <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <div :class="'hline hl-l hl-h color'+item.line"></div>
-                                    <div :class="'hline hl-r color'+item.line"></div>
+                                    <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
+                                    <HorizontalLine right :index="item.line" :color="colors[item.line]"/>
                                     <div :class="'bullet b-s color'+item.line"></div>
                                 </div>
                             </template>
@@ -59,8 +58,8 @@
                                     <TransparentBackground :color="colors[item.line]"/>
                                     <VerticalLine :index="i" top :color="colors[i]"/>
                                     <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <div :class="'hline color'+item.line"></div>
-                                    <div :class="'hline color'+item.line"></div>
+                                    <HorizontalLine :index="item.line" :color="colors[item.line]"/>
+                                    <HorizontalLine :index="item.line" :color="colors[item.line]"/>
                                 </div>
                             </template>
                         </template>
@@ -70,7 +69,7 @@
                                 <div :key="i" class="block block-mobile">
                                     <VerticalLine :index="i" top :color="colors[i]"/>
                                     <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <div :class="'hline hl-h color'+item.line"></div>
+                                    <HorizontalLine half :index="item.line" :color="colors[item.line]"/>
                                 </div>
                             </template>
                             <template v-else-if="i === item.merge">
@@ -78,8 +77,8 @@
                                     <TransparentBackground right :color="colors[item.line]"/>
                                     <VerticalLine :index="i" top :color="colors[i]"/>
                                     <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <div :class="'hline hl-l hl-h color'+item.line"></div>
-                                    <div :class="'hline hl-r color'+item.line"></div>
+                                    <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
+                                    <HorizontalLine right :index="item.line" :color="colors[item.line]"/>
                                     <div :class="'bullet b-s color'+item.line"></div>
                                 </div>
                             </template>
@@ -88,8 +87,8 @@
                                     <TransparentBackground :color="colors[item.line]"/>
                                     <VerticalLine :index="i" top :color="colors[i]"/>
                                     <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <div :class="'hline color'+item.line"></div>
-                                    <div :class="'hline color'+item.line"></div>
+                                    <HorizontalLine :index="item.line" :color="colors[item.line]"/>
+                                    <HorizontalLine :index="item.line" :color="colors[item.line]"/>
                                 </div>
                             </template>
                         </template>
@@ -114,10 +113,11 @@ import Tag from "@/components/Tag";
 import Spacer from "@/components/Spacer";
 import TransparentBackground from "@/components/TransparentBackground";
 import VerticalLine from "@/components/VerticalLine";
+import HorizontalLine from "@/components/HorizontalLine";
 
 export default {
     name: "GitFlow",
-    components: {VerticalLine, TransparentBackground, Spacer, Tag, Message},
+    components: {HorizontalLine, VerticalLine, TransparentBackground, Spacer, Tag, Message},
     data: () => ({
         items: json,
         colors: [
@@ -214,7 +214,6 @@ $mq-xxl: 2460px;
             position: relative;
             min-height: 30px;
 
-            .hline,
             .b-s {
                 position: absolute;
             }
@@ -269,29 +268,6 @@ $mq-xxl: 2460px;
             }
         }
 
-        .hline {
-            width: 30px;
-            height: 13px;
-            margin-top: 13px;
-            border-top: 4px solid;
-
-            &.hl-r {
-                width: 15px;
-                right: 0;
-            }
-
-            &.hl-l {
-                width: 15px;
-                left: 0;
-            }
-
-            &.hl-h {
-                height: 14px;
-                margin-top: 14px;
-                border-width: 2px;
-            }
-        }
-
         .topcornerline {
             width: 13px;
             height: 13px;
@@ -310,7 +286,6 @@ $mq-xxl: 2460px;
             border-radius: 0 0 15px 0;
         }
 
-        .hline,
         .topcornerline,
         .bottomcornerline {
             &.color1 {
@@ -348,18 +323,10 @@ $mq-xxl: 2460px;
                 left: 87px;
             }
 
-            .bottomcornerline, .topcornerline{
+            .bottomcornerline, .topcornerline {
                 border-radius: 0;
                 border-top: 0;
                 border-bottom: 0;
-            }
-
-            .hline.hl-h:not(.hl-r):not(.hl-l) {
-                width: 5px;
-            }
-
-            .hline.hl-r, .hline:not(.hl-h) {
-                display: none;
             }
 
             .topcornerline {
@@ -375,10 +342,6 @@ $mq-xxl: 2460px;
                     z-index: 5;
                 }
             }
-
-
-
-
         }
     }
 }
