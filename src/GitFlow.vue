@@ -19,11 +19,11 @@
                         </div>
                         <div v-else-if="item.style === 'start'" class="block block-mobile">
                             <TransparentBackground :color="colors[item.line]"/>
-                            <div :class="'bottomcornerline color'+item.line" :style="{'z-index': item.line}"/>
+                            <CornerLine bottom :index="item.line" :color="colors[item.line]"/>
                         </div>
                         <div v-else-if="item.style === 'merge'" class="block block-mobile">
                             <TransparentBackground :color="colors[item.line]"/>
-                            <div :class="'topcornerline color'+item.line" :style="{'z-index': item.line}"/>
+                            <CornerLine top :index="item.line" :color="colors[item.line]"/>
                         </div>
                         <VerticalLine v-else :index="i" :color="colors[i]" :key="i"/>
                     </template>
@@ -95,10 +95,11 @@ import Spacer from "@/components/Spacer";
 import TransparentBackground from "@/components/TransparentBackground";
 import VerticalLine from "@/components/VerticalLine";
 import HorizontalLine from "@/components/HorizontalLine";
+import CornerLine from "@/components/CornerLine";
 
 export default {
     name: "GitFlow",
-    components: {HorizontalLine, VerticalLine, TransparentBackground, Spacer, Tag, Message},
+    components: {CornerLine, HorizontalLine, VerticalLine, TransparentBackground, Spacer, Tag, Message},
     data: () => ({
         items: json,
         colors: [
@@ -170,24 +171,6 @@ $mq-xxl: 2460px;
             display: inline-flex;
         }
 
-        .bottomcornerline, .topcornerline {
-            .color1 {
-                z-index: 1;
-            }
-
-            .color2 {
-                z-index: 2;
-            }
-
-            .color3 {
-                z-index: 3;
-            }
-
-            .color4 {
-                z-index: 4;
-            }
-        }
-
         .block {
             width: 30px;
             display: flex;
@@ -248,44 +231,6 @@ $mq-xxl: 2460px;
                 border-color: $accent4;
             }
         }
-
-        .topcornerline {
-            width: 13px;
-            height: 13px;
-            margin: 13px 13px 0 0;
-            border-top: 4px solid;
-            border-right: 4px solid;
-            border-radius: 0 15px 0 0;
-        }
-
-        .bottomcornerline {
-            width: 13px;
-            height: 13px;
-            margin: 0 13px 13px 0;
-            border-bottom: 4px solid;
-            border-right: 4px solid;
-            border-radius: 0 0 15px 0;
-        }
-
-        .topcornerline,
-        .bottomcornerline {
-            &.color1 {
-                border-color: $accent;
-            }
-
-            &.color2 {
-                border-color: $accent2;
-            }
-
-            &.color3 {
-                border-color: $accent3;
-            }
-
-            &.color4 {
-                border-color: $accent4;
-            }
-        }
-
     }
 }
 
@@ -302,16 +247,6 @@ $mq-xxl: 2460px;
             .block-mobile:not(.color2) {
                 position: absolute;
                 left: 87px;
-            }
-
-            .bottomcornerline, .topcornerline {
-                border-radius: 0;
-                border-top: 0;
-                border-bottom: 0;
-            }
-
-            .topcornerline {
-                height: 17px;
             }
 
             .bullet {
