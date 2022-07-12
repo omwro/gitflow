@@ -12,6 +12,7 @@
 
 <script>
 import utils from "@/Utils";
+
 export default {
     name: "Message",
     props: ["spacing", "color", "message", "description"],

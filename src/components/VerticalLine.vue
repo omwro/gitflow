@@ -44,6 +44,7 @@ export default {
         //border-bottom: 0;
     }
 }
+
 .block .vertical-line {
     position: absolute;
 }

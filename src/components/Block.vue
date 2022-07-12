@@ -21,10 +21,15 @@ export default {
     position: relative;
     min-height: 30px;
 
-    @media (max-width: 768px) {
+    &.block-mobile {
+        position: absolute;
+        left: 87px;
+    }
+
+    @media (min-width: 768px) {
         &.block-mobile {
-            position: absolute;
-            left: 87px;
+            position: relative;
+            left: 0;
         }
     }
 }

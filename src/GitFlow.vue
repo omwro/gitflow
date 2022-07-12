@@ -118,7 +118,7 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
-    font-size: 16px;
+    font-size: 14px;
     margin: 0 8px;
     max-width: 1000px;
 
@@ -133,17 +133,16 @@ export default {
 
         .flow {
             display: inline-flex;
-        }
-    }
-
-    @media (max-width: 768px) {
-        font-size: 14px;
-
-        .flow {
             max-width: 30px;
         }
     }
+
+    @media (min-width: 768px) {
+        font-size: 16px;
+
+        .flow {
+            max-width: none !important;
+        }
+    }
 }
-
-
 </style>

@@ -9,7 +9,6 @@
 </template>
 
 <script>
-// TODO fix responsive min-width
 export default {
     name: "HorizontalLine",
     props: {
@@ -43,18 +42,27 @@ export default {
         height: 14px;
         margin-top: 14px;
         border-width: 2px;
+
+        &:not(.horizontal-line-right):not(.horizontal-line-left) {
+            width: 5px;
+        }
     }
 
-    @media (max-width: 768px) {
+    &.horizontal-line-right, &:not(.horizontal-line-half) {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
         &.horizontal-line-half:not(.horizontal-line-right):not(.horizontal-line-left) {
-            width: 5px;
+            width: 30px;
         }
 
         &.horizontal-line-right, &:not(.horizontal-line-half) {
-            display: none;
+            display: flex;
         }
     }
 }
+
 .block .horizontal-line {
     position: absolute;
 }
