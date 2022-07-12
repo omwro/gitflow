@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import json from "./git.json"
 import Message from "@/components/Message";
 import Tag from "@/components/Tag";
 import Spacer from "@/components/Spacer";
@@ -100,16 +99,7 @@ import Block from "@/components/Block";
 export default {
     name: "GitFlow",
     components: {Block, Bullet, CornerLine, HorizontalLine, VerticalLine, TransparentBackground, Spacer, Tag, Message},
-    data: () => ({
-        items: json,
-        colors: [
-            "#000000",
-            "#b51c14",
-            "#0074A0",
-            "#00764E",
-            "#cd8700"
-        ]
-    })
+    props: ["items", "colors"]
 }
 </script>
 

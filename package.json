@@ -2,9 +2,15 @@
   "name": "gitflow",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Omer Erdem",
+    "email": "public.omererdem@outlook.com",
+    "url": "omererdem.nl"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "build-library" : "vue-cli-service build --target lib --name gitflow install.js"
   },
   "dependencies": {
     "vue": "^2.6.14"
@@ -19,5 +25,7 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "main" : "dist/gitflow.common.js",
+  "files": ["dist/*"]
 }

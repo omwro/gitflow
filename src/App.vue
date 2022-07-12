@@ -1,17 +1,18 @@
 <template>
-    <GitFlow/>
+    <GitFlow :items="items" :colors="colors"/>
 </template>
 
 <script>
 import GitFlow from "@/GitFlow";
+import json from "./git.json"
 
 export default {
     name: 'App',
     components: {
         GitFlow,
     },
-
     data: () => ({
+        items: json,
         colors: [
             "#000000",
             "#b51c14",
