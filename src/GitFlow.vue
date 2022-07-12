@@ -9,94 +9,75 @@
             <div class="flow">
                 <template v-for="i in item.line">
                     <template v-if="i === item.line">
-                        <template v-if="item.style === 'commit'">
-                            <div :key="i" class="block">
-                                <TransparentBackground right :color="colors[i]"/>
-                                <VerticalLine :index="i" top :color="colors[i]"/>
-                                <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                <div :class="'bullet b-img color'+item.line">
-                                    <img v-lazy="'./img/company/logo.webp'" alt="profile picture"/>
-                                </div>
+                        <div v-if="item.style === 'commit'" class="block">
+                            <TransparentBackground right :color="colors[i]"/>
+                            <VerticalLine :index="i" top :color="colors[i]"/>
+                            <VerticalLine :index="i" bottom :color="colors[i]"/>
+                            <div :class="'bullet b-img color'+item.line">
+                                <img v-lazy="'./img/company/logo.webp'" alt="profile picture"/>
                             </div>
-                        </template>
-                        <template v-else-if="item.style === 'start'">
-                            <div class="block block-mobile" :key="i">
-                                <TransparentBackground :color="colors[item.line]"/>
-                                <div :class="'bottomcornerline color'+item.line" :style="{'z-index': item.line}"/>
-                            </div>
-                        </template>
-                        <template v-else-if="item.style === 'merge'">
-                            <div class="block block-mobile" :key="i">
-                                <TransparentBackground :color="colors[item.line]"/>
-                                <div :class="'topcornerline color'+item.line" :style="{'z-index': item.line}"/>
-                            </div>
-                        </template>
+                        </div>
+                        <div v-else-if="item.style === 'start'" class="block block-mobile">
+                            <TransparentBackground :color="colors[item.line]"/>
+                            <div :class="'bottomcornerline color'+item.line" :style="{'z-index': item.line}"/>
+                        </div>
+                        <div v-else-if="item.style === 'merge'" class="block block-mobile">
+                            <TransparentBackground :color="colors[item.line]"/>
+                            <div :class="'topcornerline color'+item.line" :style="{'z-index': item.line}"/>
+                        </div>
                         <VerticalLine v-else :index="i" :color="colors[i]" :key="i"/>
                     </template>
                     <template v-else>
                         <template v-if="item.style === 'start'">
-                            <template v-if="i < item.start">
-                                <div :key="i" :class="'block block-mobile color'+i">
-                                    <VerticalLine :index="i" top :color="colors[i]"/>
-                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
-                                    <HorizontalLine right half :index="item.line" :color="colors[item.line]"/>
-                                </div>
-                            </template>
-                            <template v-else-if="i === item.start">
-                                <div :key="i" class="block">
-                                    <TransparentBackground right :color="colors[item.line]"/>
-                                    <VerticalLine :index="i" top :color="colors[i]"/>
-                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
-                                    <HorizontalLine right :index="item.line" :color="colors[item.line]"/>
-                                    <div :class="'bullet b-s color'+item.line"></div>
-                                </div>
-                            </template>
-                            <template v-else-if="i > item.start">
-                                <div :key="i" class="block block-mobile">
-                                    <TransparentBackground :color="colors[item.line]"/>
-                                    <VerticalLine :index="i" top :color="colors[i]"/>
-                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <HorizontalLine :index="item.line" :color="colors[item.line]"/>
-                                    <HorizontalLine :index="item.line" :color="colors[item.line]"/>
-                                </div>
-                            </template>
+                            <div v-if="i < item.start" :class="'block block-mobile color'+i">
+                                <VerticalLine :index="i" top :color="colors[i]"/>
+                                <VerticalLine :index="i" bottom :color="colors[i]"/>
+                                <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
+                                <HorizontalLine right half :index="item.line" :color="colors[item.line]"/>
+                            </div>
+                            <div v-else-if="i === item.start" class="block">
+                                <TransparentBackground right :color="colors[item.line]"/>
+                                <VerticalLine :index="i" top :color="colors[i]"/>
+                                <VerticalLine :index="i" bottom :color="colors[i]"/>
+                                <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
+                                <HorizontalLine right :index="item.line" :color="colors[item.line]"/>
+                                <div :class="'bullet b-s color'+item.line"></div>
+                            </div>
+                            <div v-else-if="i > item.start" class="block block-mobile">
+                                <TransparentBackground :color="colors[item.line]"/>
+                                <VerticalLine :index="i" top :color="colors[i]"/>
+                                <VerticalLine :index="i" bottom :color="colors[i]"/>
+                                <HorizontalLine :index="item.line" :color="colors[item.line]"/>
+                                <HorizontalLine :index="item.line" :color="colors[item.line]"/>
+                            </div>
                         </template>
                         <VerticalLine v-else-if="item.style === 'commit'" :index="i" :color="colors[i]"/>
                         <template v-else-if="item.style === 'merge'">
-                            <template v-if="i < item.merge">
-                                <div :key="i" class="block block-mobile">
-                                    <VerticalLine :index="i" top :color="colors[i]"/>
-                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <HorizontalLine half :index="item.line" :color="colors[item.line]"/>
-                                </div>
-                            </template>
-                            <template v-else-if="i === item.merge">
-                                <div :key="i" class="block">
-                                    <TransparentBackground right :color="colors[item.line]"/>
-                                    <VerticalLine :index="i" top :color="colors[i]"/>
-                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
-                                    <HorizontalLine right :index="item.line" :color="colors[item.line]"/>
-                                    <div :class="'bullet b-s color'+item.line"></div>
-                                </div>
-                            </template>
-                            <template v-else-if="i > item.merge">
-                                <div :key="i" :class="'block block-mobile color'+item.line">
-                                    <TransparentBackground :color="colors[item.line]"/>
-                                    <VerticalLine :index="i" top :color="colors[i]"/>
-                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
-                                    <HorizontalLine :index="item.line" :color="colors[item.line]"/>
-                                    <HorizontalLine :index="item.line" :color="colors[item.line]"/>
-                                </div>
-                            </template>
+                            <div v-if="i < item.merge" class="block block-mobile">
+                                <VerticalLine :index="i" top :color="colors[i]"/>
+                                <VerticalLine :index="i" bottom :color="colors[i]"/>
+                                <HorizontalLine half :index="item.line" :color="colors[item.line]"/>
+                            </div>
+                            <div v-else-if="i === item.merge" class="block">
+                                <TransparentBackground right :color="colors[item.line]"/>
+                                <VerticalLine :index="i" top :color="colors[i]"/>
+                                <VerticalLine :index="i" bottom :color="colors[i]"/>
+                                <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
+                                <HorizontalLine right :index="item.line" :color="colors[item.line]"/>
+                                <div :class="'bullet b-s color'+item.line"></div>
+                            </div>
+                            <div v-else-if="i > item.merge" :class="'block block-mobile color'+item.line">
+                                <TransparentBackground :color="colors[item.line]"/>
+                                <VerticalLine :index="i" top :color="colors[i]"/>
+                                <VerticalLine :index="i" bottom :color="colors[i]"/>
+                                <HorizontalLine :index="item.line" :color="colors[item.line]"/>
+                                <HorizontalLine :index="item.line" :color="colors[item.line]"/>
+                            </div>
                         </template>
                         <VerticalLine v-else :index="i" :color="colors[i]" :key="i"/>
                     </template>
                 </template>
             </div>
-
             <Message v-if="item.msg"
                      :spacing="item.spacing"
                      :color="colors[item.line]"
