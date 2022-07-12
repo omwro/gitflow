@@ -12,7 +12,7 @@
                     <template v-if="i === item.line">
                         <template v-if="item.style === 'commit'">
                             <div :key="i" class="block">
-                                <div :class="'tpbg tpbg-h color'+i"/>
+                                <TransparentBackground right :color="colors[i]"/>
                                 <div :class="'vline vl-t color'+i"></div>
                                 <div :class="'vline vl-b color'+i"></div>
                                 <div :class="'bullet b-img color'+item.line">
@@ -22,13 +22,13 @@
                         </template>
                         <template v-else-if="item.style === 'start'">
                             <div class="block block-mobile" :key="i">
-                                <div :class="'tpbg color'+item.line"/>
+                                <TransparentBackground :color="colors[item.line]"/>
                                 <div :class="'bottomcornerline color'+item.line"></div>
                             </div>
                         </template>
                         <template v-else-if="item.style === 'merge'">
                             <div class="block block-mobile" :key="i">
-                                <div :class="'tpbg color'+item.line"/>
+                                <TransparentBackground :color="colors[item.line]"/>
                                 <div :class="'topcornerline color'+item.line"></div>
                             </div>
                         </template>
@@ -48,7 +48,7 @@
                             </template>
                             <template v-else-if="i === item.start">
                                 <div :key="i" class="block">
-                                    <div :class="'tpbg tpbg-h color'+item.line"/>
+                                    <TransparentBackground right :color="colors[item.line]"/>
                                     <div :class="'vline vl-t color'+i"></div>
                                     <div :class="'vline vl-b color'+i"></div>
                                     <div :class="'hline hl-l hl-h color'+item.line"></div>
@@ -58,7 +58,7 @@
                             </template>
                             <template v-else-if="i > item.start">
                                 <div :key="i" class="block block-mobile">
-                                    <div :class="'tpbg color'+item.line"/>
+                                    <TransparentBackground :color="colors[item.line]"/>
                                     <div :class="'vline vl-t color'+i"></div>
                                     <div :class="'vline vl-b color'+i"></div>
                                     <div :class="'hline color'+item.line"></div>
@@ -79,7 +79,7 @@
                             </template>
                             <template v-else-if="i === item.merge">
                                 <div :key="i" class="block">
-                                    <div :class="'tpbg tpbg-h color'+item.line"/>
+                                    <TransparentBackground right :color="colors[item.line]"/>
                                     <div :class="'vline vl-t color'+i"></div>
                                     <div :class="'vline vl-b color'+i"></div>
                                     <div :class="'hline hl-l hl-h color'+item.line"></div>
@@ -89,7 +89,7 @@
                             </template>
                             <template v-else-if="i > item.merge">
                                 <div :key="i" :class="'block block-mobile color'+item.line">
-                                    <div :class="'tpbg color'+item.line"/>
+                                    <TransparentBackground :color="colors[item.line]"/>
                                     <div :class="'vline vl-t color'+i"></div>
                                     <div :class="'vline vl-b color'+i"></div>
                                     <div :class="'hline color'+item.line"></div>
@@ -118,10 +118,11 @@ import json from "./git.json"
 import Message from "@/components/Message";
 import Tag from "@/components/Tag";
 import Spacer from "@/components/Spacer";
+import TransparentBackground from "@/components/TransparentBackground";
 
 export default {
     name: "GitFlow",
-    components: {Spacer, Tag, Message},
+    components: {TransparentBackground, Spacer, Tag, Message},
     data: () => ({
         items: json,
         colors: [
@@ -222,34 +223,6 @@ $mq-xxl: 2460px;
             .vline,
             .b-s {
                 position: absolute;
-            }
-
-            .tpbg {
-                width: 30px;
-                height: calc(100% - 6px);
-                position: absolute;
-                margin-top: 3px;
-
-                &.tpbg-h {
-                    width: 15px;
-                    margin-left: 15px;
-                }
-
-                &.color1 {
-                    background-color: $accent-tp;
-                }
-
-                &.color2 {
-                    background-color: $accent2-tp;
-                }
-
-                &.color3 {
-                    background-color: $accent3-tp;
-                }
-
-                &.color4 {
-                    background-color: $accent4-tp;
-                }
             }
         }
 
@@ -432,13 +405,7 @@ $mq-xxl: 2460px;
                 }
             }
 
-            .tpbg {
-                display: none;
 
-                &.tpbg-h {
-                    display: block;
-                }
-            }
 
 
         }
