@@ -1,6 +1,8 @@
 <template>
     <div class="message-container">
-        <div class="message-spacer" :class="'ms'+spacing+' color'+color"/>
+        <div class="message-spacer"
+             :style="{'border-color': color, 'background-color': `rgba(${hexToRgb(color)}, 0.4)`}"
+             :class="'ms'+spacing"/>
         <div class="message-block">
             <div>{{ message }}</div>
             <div class="description">{{ description }}</div>
@@ -9,22 +11,19 @@
 </template>
 
 <script>
+import utils from "@/Utils";
 export default {
     name: "Message",
-    props: ["spacing", "color", "message", "description"]
+    props: ["spacing", "color", "message", "description"],
+    methods: {
+        hexToRgb(color) {
+            return utils.hexToRgb(color)
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-$accent: #b51c14;
-$accent-tp: rgba($accent, 0.4);
-$accent2: #0074A0;
-$accent2-tp: rgba($accent2, 0.4);
-$accent3: #00764E;
-$accent3-tp: rgba($accent3, 0.4);
-$accent4: #cd8700;
-$accent4-tp: rgba($accent4, 0.4);
-
 .message-container {
     display: flex;
     width: auto;
@@ -35,26 +34,6 @@ $accent4-tp: rgba($accent4, 0.4);
         width: 10px;
         border-right: 3px solid;
         margin: 3px 10px 3px 0;
-
-        &.color1 {
-            border-color: $accent;
-            background-color: $accent-tp;
-        }
-
-        &.color2 {
-            border-color: $accent2;
-            background-color: $accent2-tp;
-        }
-
-        &.color3 {
-            border-color: $accent3;
-            background-color: $accent3-tp;
-        }
-
-        &.color4 {
-            border-color: $accent4;
-            background-color: $accent4-tp;
-        }
 
         @media (min-width: 768px) {
             &.ms1 {

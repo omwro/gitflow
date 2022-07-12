@@ -110,7 +110,7 @@
 
             <Message v-if="item.msg"
                      :spacing="item.spacing"
-                     :color="item.line"
+                     :color="colors[item.line]"
                      :message="item.msg"
                      :description="item.desc"/>
         </div>
@@ -125,7 +125,13 @@ export default {
     name: "GitFlow",
     components: {Message},
     data: () => ({
-        items: json
+        items: json,
+        colors: [
+            "#000000",
+            "#0074A0",
+            "#00764E",
+            "#cd8700"
+        ]
     })
 }
 </script>
