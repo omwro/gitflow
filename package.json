@@ -1,5 +1,5 @@
 {
-  "name": "gitflow",
+  "name": "gitflow-component",
   "version": "0.1.0",
   "private": false,
   "author": {
@@ -27,5 +27,6 @@
     "not dead"
   ],
   "main" : "dist/gitflow.common.js",
-  "files": ["dist/*"]
+  "files": ["dist/*"],
+  "license": "MIT"
 }
