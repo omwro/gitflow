@@ -108,24 +108,22 @@
                 </template>
             </div>
 
-            <template v-if="item.msg">
-                <div :class="'commit c-'+item.spacing+' color'+item.line">
-                    <div></div>
-                    <div class="commit-msg">
-                        {{ item.msg }}
-                        <div style="font-size: 12px">{{ item.desc }}</div>
-                    </div>
-                </div>
-            </template>
+            <Message v-if="item.msg"
+                     :spacing="item.spacing"
+                     :color="item.line"
+                     :message="item.msg"
+                     :description="item.desc"/>
         </div>
     </div>
 </template>
 
 <script>
 import json from "./git.json"
+import Message from "@/components/Message";
 
 export default {
     name: "GitFlow",
+    components: {Message},
     data: () => ({
         items: json
     })
@@ -413,64 +411,6 @@ $mq-xxl: 2460px;
             margin-left: 130px;
         }
 
-        .commit {
-            display: flex;
-            width: auto;
-            min-height: 30px;
-            align-self: center;
-
-            > div:first-child {
-                width: 50px;
-                border-right: 3px solid;
-                margin: 3px 10px 3px 0;
-            }
-
-            > div:last-child {
-                align-self: center;
-
-                &.commit-msg {
-                    width: calc(100% - 155px);
-                    flex: auto;
-                    padding: 2px 0;
-                }
-            }
-
-            &.c-1 > div:first-child {
-                width: 80px;
-            }
-
-            &.c-2 > div:first-child {
-                width: 110px;
-            }
-
-            &.c-3 > div:first-child {
-                width: 140px;
-            }
-
-            &.c-4 > div:first-child {
-                width: 170px;
-            }
-
-            &.color1 > div:first-child {
-                border-color: $accent;
-                background-color: $accent-tp;
-            }
-
-            &.color2 > div:first-child {
-                border-color: $accent2;
-                background-color: $accent2-tp;
-            }
-
-            &.color3 > div:first-child {
-                border-color: $accent3;
-                background-color: $accent3-tp;
-            }
-
-            &.color4 > div:first-child {
-                border-color: $accent4;
-                background-color: $accent4-tp;
-            }
-        }
     }
 }
 
@@ -497,7 +437,7 @@ $mq-xxl: 2460px;
                 left: 87px;
             }
 
-            .vline, .bottomcornerline, .topcornerline, .commit.c-0, .commit.c-1, .commit.c-2 {
+            .vline, .bottomcornerline, .topcornerline{
                 border-radius: 0;
                 border-top: 0;
                 border-bottom: 0;
@@ -537,27 +477,7 @@ $mq-xxl: 2460px;
                 }
             }
 
-            .commit {
-                > div:first-child {
-                    width: 10px;
-                }
 
-                &.c-1 > div:first-child {
-                    width: 10px;
-                }
-
-                &.c-2 > div:first-child {
-                    width: 10px;
-                }
-
-                &.c-3 > div:first-child {
-                    width: 10px;
-                }
-
-                &.c-4 > div:first-child {
-                    width: 10px;
-                }
-            }
         }
     }
 }
