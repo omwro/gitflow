@@ -2,7 +2,8 @@
     <div id="gitflow">
         <div v-for="item in items" :key="item.id" class="row">
             <template v-if="item.tag">
-                <div :class="'tag color'+item.line">{{ item.tag }}</div>
+<!--                <div :class="'tag color'+item.line">{{ item.tag }}</div>-->
+                <Tag :color="colors[item.line]" :message="item.tag"/>
                 <div :class="'hline hl-h color'+item.line"></div>
             </template>
             <template v-else>
@@ -120,14 +121,16 @@
 <script>
 import json from "./git.json"
 import Message from "@/components/Message";
+import Tag from "@/components/Tag";
 
 export default {
     name: "GitFlow",
-    components: {Message},
+    components: {Tag, Message},
     data: () => ({
         items: json,
         colors: [
             "#000000",
+            "#b51c14",
             "#0074A0",
             "#00764E",
             "#cd8700"
@@ -209,36 +212,6 @@ $mq-xxl: 2460px;
 
             .color4 {
                 z-index: 4;
-            }
-        }
-
-        .tag {
-            width: 88px;
-            height: 12px;
-            padding: 5px;
-            margin: 3px 0;
-            display: flex;
-            align-items: center;
-            border-radius: 2px;
-
-            &.color1 {
-                background-color: $accent-tp;
-                border: solid 1px $accent;
-            }
-
-            &.color2 {
-                background-color: $accent2-tp;
-                border: solid 1px $accent2;
-            }
-
-            &.color3 {
-                background-color: $accent3-tp;
-                border: solid 1px $accent3;
-            }
-
-            &.color4 {
-                background-color: $accent4-tp;
-                border: solid 1px $accent4;
             }
         }
 
@@ -459,10 +432,6 @@ $mq-xxl: 2460px;
 
             .topcornerline {
                 height: 17px;
-            }
-
-            .tag {
-                width: 62px;
             }
 
             .bullet {
