@@ -13,8 +13,8 @@
                         <template v-if="item.style === 'commit'">
                             <div :key="i" class="block">
                                 <TransparentBackground right :color="colors[i]"/>
-                                <div :class="'vline vl-t color'+i"></div>
-                                <div :class="'vline vl-b color'+i"></div>
+                                <VerticalLine :index="i" top :color="colors[i]"/>
+                                <VerticalLine :index="i" bottom :color="colors[i]"/>
                                 <div :class="'bullet b-img color'+item.line">
                                     <img v-lazy="'./img/company/logo.webp'" alt="profile picture"/>
                                 </div>
@@ -23,25 +23,23 @@
                         <template v-else-if="item.style === 'start'">
                             <div class="block block-mobile" :key="i">
                                 <TransparentBackground :color="colors[item.line]"/>
-                                <div :class="'bottomcornerline color'+item.line"></div>
+                                <div :class="'bottomcornerline color'+item.line" :style="{'z-index': item.line}"/>
                             </div>
                         </template>
                         <template v-else-if="item.style === 'merge'">
                             <div class="block block-mobile" :key="i">
                                 <TransparentBackground :color="colors[item.line]"/>
-                                <div :class="'topcornerline color'+item.line"></div>
+                                <div :class="'topcornerline color'+item.line" :style="{'z-index': item.line}"/>
                             </div>
                         </template>
-                        <template v-else>
-                            <div :key="i" :class="'vline color'+i"></div>
-                        </template>
+                        <VerticalLine v-else :index="i" :color="colors[i]" :key="i"/>
                     </template>
                     <template v-else>
                         <template v-if="item.style === 'start'">
                             <template v-if="i < item.start">
                                 <div :key="i" :class="'block block-mobile color'+i">
-                                    <div :class="'vline vl-t color'+i"></div>
-                                    <div :class="'vline vl-b color'+i"></div>
+                                    <VerticalLine :index="i" top :color="colors[i]"/>
+                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
                                     <div :class="'hline hl-l hl-h color'+item.line"></div>
                                     <div :class="'hline hl-r hl-h color'+item.line"></div>
                                 </div>
@@ -49,8 +47,8 @@
                             <template v-else-if="i === item.start">
                                 <div :key="i" class="block">
                                     <TransparentBackground right :color="colors[item.line]"/>
-                                    <div :class="'vline vl-t color'+i"></div>
-                                    <div :class="'vline vl-b color'+i"></div>
+                                    <VerticalLine :index="i" top :color="colors[i]"/>
+                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
                                     <div :class="'hline hl-l hl-h color'+item.line"></div>
                                     <div :class="'hline hl-r color'+item.line"></div>
                                     <div :class="'bullet b-s color'+item.line"></div>
@@ -59,29 +57,27 @@
                             <template v-else-if="i > item.start">
                                 <div :key="i" class="block block-mobile">
                                     <TransparentBackground :color="colors[item.line]"/>
-                                    <div :class="'vline vl-t color'+i"></div>
-                                    <div :class="'vline vl-b color'+i"></div>
+                                    <VerticalLine :index="i" top :color="colors[i]"/>
+                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
                                     <div :class="'hline color'+item.line"></div>
                                     <div :class="'hline color'+item.line"></div>
                                 </div>
                             </template>
                         </template>
-                        <template v-else-if="item.style === 'commit'">
-                            <div :key="i" :class="'vline color'+i"></div>
-                        </template>
+                        <VerticalLine v-else-if="item.style === 'commit'" :index="i" :color="colors[i]"/>
                         <template v-else-if="item.style === 'merge'">
                             <template v-if="i < item.merge">
                                 <div :key="i" class="block block-mobile">
-                                    <div :class="'vline vl-t color'+i"></div>
-                                    <div :class="'vline vl-b color'+i"></div>
+                                    <VerticalLine :index="i" top :color="colors[i]"/>
+                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
                                     <div :class="'hline hl-h color'+item.line"></div>
                                 </div>
                             </template>
                             <template v-else-if="i === item.merge">
                                 <div :key="i" class="block">
                                     <TransparentBackground right :color="colors[item.line]"/>
-                                    <div :class="'vline vl-t color'+i"></div>
-                                    <div :class="'vline vl-b color'+i"></div>
+                                    <VerticalLine :index="i" top :color="colors[i]"/>
+                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
                                     <div :class="'hline hl-l hl-h color'+item.line"></div>
                                     <div :class="'hline hl-r color'+item.line"></div>
                                     <div :class="'bullet b-s color'+item.line"></div>
@@ -90,16 +86,14 @@
                             <template v-else-if="i > item.merge">
                                 <div :key="i" :class="'block block-mobile color'+item.line">
                                     <TransparentBackground :color="colors[item.line]"/>
-                                    <div :class="'vline vl-t color'+i"></div>
-                                    <div :class="'vline vl-b color'+i"></div>
+                                    <VerticalLine :index="i" top :color="colors[i]"/>
+                                    <VerticalLine :index="i" bottom :color="colors[i]"/>
                                     <div :class="'hline color'+item.line"></div>
                                     <div :class="'hline color'+item.line"></div>
                                 </div>
                             </template>
                         </template>
-                        <template v-else>
-                            <div :key="i" :class="'vline color'+i"></div>
-                        </template>
+                        <VerticalLine v-else :index="i" :color="colors[i]" :key="i"/>
                     </template>
                 </template>
             </div>
@@ -119,10 +113,11 @@ import Message from "@/components/Message";
 import Tag from "@/components/Tag";
 import Spacer from "@/components/Spacer";
 import TransparentBackground from "@/components/TransparentBackground";
+import VerticalLine from "@/components/VerticalLine";
 
 export default {
     name: "GitFlow",
-    components: {TransparentBackground, Spacer, Tag, Message},
+    components: {VerticalLine, TransparentBackground, Spacer, Tag, Message},
     data: () => ({
         items: json,
         colors: [
@@ -194,7 +189,7 @@ $mq-xxl: 2460px;
             display: inline-flex;
         }
 
-        .vline, .bottomcornerline, .topcornerline {
+        .bottomcornerline, .topcornerline {
             .color1 {
                 z-index: 1;
             }
@@ -220,7 +215,6 @@ $mq-xxl: 2460px;
             min-height: 30px;
 
             .hline,
-            .vline,
             .b-s {
                 position: absolute;
             }
@@ -298,24 +292,6 @@ $mq-xxl: 2460px;
             }
         }
 
-        .vline {
-            width: 13px;
-            height: auto;
-            margin-right: 13px;
-            border-right: 4px solid;
-            flex: none;
-
-            &.vl-t {
-                height: 100%;
-                top: 0;
-            }
-
-            &.vl-b {
-                height: 100%;
-                bottom: 0;
-            }
-        }
-
         .topcornerline {
             width: 13px;
             height: 13px;
@@ -335,7 +311,6 @@ $mq-xxl: 2460px;
         }
 
         .hline,
-        .vline,
         .topcornerline,
         .bottomcornerline {
             &.color1 {
@@ -368,16 +343,12 @@ $mq-xxl: 2460px;
                 max-width: 30px;
             }
 
-            .vline {
-                position: absolute;
-            }
-
             .block-mobile:not(.color2) {
                 position: absolute;
                 left: 87px;
             }
 
-            .vline, .bottomcornerline, .topcornerline{
+            .bottomcornerline, .topcornerline{
                 border-radius: 0;
                 border-top: 0;
                 border-bottom: 0;
