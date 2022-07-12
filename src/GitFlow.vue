@@ -2,13 +2,10 @@
     <div id="gitflow">
         <div v-for="item in items" :key="item.id" class="row">
             <template v-if="item.tag">
-<!--                <div :class="'tag color'+item.line">{{ item.tag }}</div>-->
                 <Tag :color="colors[item.line]" :message="item.tag"/>
                 <div :class="'hline hl-h color'+item.line"></div>
             </template>
-            <template v-else>
-                <div class="spacer-1"></div>
-            </template>
+            <Spacer v-else/>
 
             <div class="flow">
                 <template v-for="i in item.line">
@@ -28,14 +25,12 @@
                                 <div :class="'tpbg color'+item.line"/>
                                 <div :class="'bottomcornerline color'+item.line"></div>
                             </div>
-                            <!--                                <div :key="i" :class="'bottomcornerline color'+item.line"></div>-->
                         </template>
                         <template v-else-if="item.style === 'merge'">
                             <div class="block block-mobile" :key="i">
                                 <div :class="'tpbg color'+item.line"/>
                                 <div :class="'topcornerline color'+item.line"></div>
                             </div>
-                            <!--                                <div :key="i" :class="'topcornerline color'+item.line"></div>-->
                         </template>
                         <template v-else>
                             <div :key="i" :class="'vline color'+i"></div>
@@ -122,10 +117,11 @@
 import json from "./git.json"
 import Message from "@/components/Message";
 import Tag from "@/components/Tag";
+import Spacer from "@/components/Spacer";
 
 export default {
     name: "GitFlow",
-    components: {Tag, Message},
+    components: {Spacer, Tag, Message},
     data: () => ({
         items: json,
         colors: [
@@ -386,10 +382,6 @@ $mq-xxl: 2460px;
             }
         }
 
-        .spacer-1 {
-            margin-left: 130px;
-        }
-
     }
 }
 
@@ -401,10 +393,6 @@ $mq-xxl: 2460px;
 
             .flow {
                 max-width: 30px;
-            }
-
-            .spacer-1 {
-                margin-left: 79px;
             }
 
             .vline {
