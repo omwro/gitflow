@@ -13,9 +13,7 @@
                             <TransparentBackground right :color="colors[i]"/>
                             <VerticalLine :index="i" top :color="colors[i]"/>
                             <VerticalLine :index="i" bottom :color="colors[i]"/>
-                            <div :class="'bullet b-img color'+item.line">
-                                <img v-lazy="'./img/company/logo.webp'" alt="profile picture"/>
-                            </div>
+                            <Bullet :index="item.line" :color="colors[item.line]" :image="item.img"/>
                         </div>
                         <div v-else-if="item.style === 'start'" class="block block-mobile">
                             <TransparentBackground :color="colors[item.line]"/>
@@ -41,7 +39,7 @@
                                 <VerticalLine :index="i" bottom :color="colors[i]"/>
                                 <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
                                 <HorizontalLine right :index="item.line" :color="colors[item.line]"/>
-                                <div :class="'bullet b-s color'+item.line"></div>
+                                <Bullet :index="item.line" :color="colors[item.line]"/>
                             </div>
                             <div v-else-if="i > item.start" class="block block-mobile">
                                 <TransparentBackground :color="colors[item.line]"/>
@@ -64,7 +62,7 @@
                                 <VerticalLine :index="i" bottom :color="colors[i]"/>
                                 <HorizontalLine left half :index="item.line" :color="colors[item.line]"/>
                                 <HorizontalLine right :index="item.line" :color="colors[item.line]"/>
-                                <div :class="'bullet b-s color'+item.line"></div>
+                                <Bullet :index="item.line" :color="colors[item.line]"/>
                             </div>
                             <div v-else-if="i > item.merge" :class="'block block-mobile color'+item.line">
                                 <TransparentBackground :color="colors[item.line]"/>
@@ -96,10 +94,11 @@ import TransparentBackground from "@/components/TransparentBackground";
 import VerticalLine from "@/components/VerticalLine";
 import HorizontalLine from "@/components/HorizontalLine";
 import CornerLine from "@/components/CornerLine";
+import Bullet from "@/components/Bullet";
 
 export default {
     name: "GitFlow",
-    components: {CornerLine, HorizontalLine, VerticalLine, TransparentBackground, Spacer, Tag, Message},
+    components: {Bullet, CornerLine, HorizontalLine, VerticalLine, TransparentBackground, Spacer, Tag, Message},
     data: () => ({
         items: json,
         colors: [
@@ -114,41 +113,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color-light: #000000;
-$background-light: #ffffff;
-$block-light: #ebebeb;
-
-$color-dark: #ebebeb;
-$background-dark: #141414;
-$block-dark: #1e1e1e;
-
-$dark5: #3c3c3c;
-$dark6: #464646;
-$grey: #7d7d7d;
-
-$light2: #e1e1e1;
-$light3: #d7d7d7;
-$light4: #cdcdcd;
-$light5: #c3c3c3;
-$light6: #b9b9b9;
-
-$accent: #b51c14;
-$accent-dark: #541714;
-$accent-tp: rgba($accent, 0.4);
-$accent2: #0074A0;
-$accent2-tp: rgba($accent2, 0.4);
-$accent3: #00764E;
-$accent3-tp: rgba($accent3, 0.4);
-$accent4: #cd8700;
-$accent4-tp: rgba($accent4, 0.4);
-$brilliant-turquoise: #4ae3eb;
-
-$mq-s: 320px;
-$mq-sm: 480px;
 $mq-m: 768px;
-$mq-l: 1280px;
-$mq-xl: 1920px;
-$mq-xxl: 2460px;
 
 #gitflow {
     display: flex;
@@ -177,60 +142,8 @@ $mq-xxl: 2460px;
             flex-wrap: wrap;
             position: relative;
             min-height: 30px;
-
-            .b-s {
-                position: absolute;
-            }
         }
 
-        .bullet {
-            height: 30px;
-            width: 30px;
-            border-radius: 50%;
-            align-self: center;
-            z-index: 5;
-
-            &.b-s {
-                height: 16px;
-                width: 16px;
-                margin: 7px;
-                position: relative;
-            }
-
-            &.b-img {
-                height: 24px;
-                width: 24px;
-                border: 3px solid;
-                overflow: hidden;
-                flex: none;
-
-                img {
-                    width: 24px;
-                    height: 24px;
-                    object-fit: contain;
-                }
-            }
-
-            &.color1 {
-                background-color: $accent;
-                border-color: $accent;
-            }
-
-            &.color2 {
-                background-color: $accent2;
-                border-color: $accent2;
-            }
-
-            &.color3 {
-                background-color: $accent3;
-                border-color: $accent3;
-            }
-
-            &.color4 {
-                background-color: $accent4;
-                border-color: $accent4;
-            }
-        }
     }
 }
 
@@ -247,16 +160,6 @@ $mq-xxl: 2460px;
             .block-mobile:not(.color2) {
                 position: absolute;
                 left: 87px;
-            }
-
-            .bullet {
-                &.b-img {
-                    z-index: 5;
-                }
-
-                &.b-s {
-                    z-index: 5;
-                }
             }
         }
     }
