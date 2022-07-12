@@ -1,28 +1,37 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <GitFlow/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GitFlow from "@/GitFlow";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        GitFlow,
+    },
+
+    data: () => ({
+        colors: [
+            "#000000",
+            "#b51c14",
+            "#0074A0",
+            "#00764E",
+            "#cd8700"
+        ]
+    })
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+#app main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
 </style>
