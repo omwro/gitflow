@@ -5,4 +5,4 @@ Vue.config.productionTip = false
 
 new Vue({
   render: function (h) { return h(GitFlow) },
-}).$mount('#app')
+}).$mount('#gitflow')
