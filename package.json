@@ -1,6 +1,6 @@
 {
   "name": "gitflow-component",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "author": {
     "name": "Omer Erdem",
@@ -10,7 +10,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-package" : "vue-cli-service build --target lib --name gitflow ./src/main.js"
+    "build-package" : "vue-cli-service build --target lib --name gitflow ./src/index.js"
   },
   "dependencies": {
     "vue": "^2.6.14"
