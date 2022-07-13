@@ -7,6 +7,7 @@
     "email": "public.omererdem@outlook.com",
     "url": "omererdem.nl"
   },
+  "repository":"https://github.com/omwro/gitflow",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
