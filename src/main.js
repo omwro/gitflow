@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import App from './App.vue'
+import GitFlow from "@/GitFlow";
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: function (h) { return h(App) },
+  render: function (h) { return h(GitFlow) },
 }).$mount('#app')

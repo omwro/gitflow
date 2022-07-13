@@ -1,6 +1,6 @@
 {
   "name": "gitflow-component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "author": {
     "name": "Omer Erdem",
@@ -27,6 +27,7 @@
     "not dead"
   ],
   "main" : "dist/gitflow.common.js",
-  "files": ["dist/*"],
-  "license": "MIT"
+  "files": ["dist"],
+  "license": "MIT",
+  "keywords": ["Git", "GitFlow", "Timeline", "Vue"]
 }

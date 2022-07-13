@@ -1,4 +1,4 @@
-import GitFlow from "@/GitFlow";
+import GitFlow from "./src/GitFlow";
 
 const GitFlowApp = {
     install(Vue, options) {
