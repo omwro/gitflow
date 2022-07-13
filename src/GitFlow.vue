@@ -1,6 +1,6 @@
 <template>
     <div id="gitflow">
-        <div v-for="item in items" :key="item.id" class="row">
+        <div v-for="(item, index) in items" :key="index" class="row">
             <template v-if="item.tag">
                 <Tag :color="colors[item.line]" :message="item.tag"/>
                 <HorizontalLine half :index="item.line" :color="colors[item.line]"/>
