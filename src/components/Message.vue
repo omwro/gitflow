@@ -1,12 +1,9 @@
 <template>
-    <div class="message-container">
-        <div class="message-spacer"
+    <div class="gitflow-message-container">
+        <div class="gitflow-message-spacer"
              :style="{'border-color': color, 'background-color': `rgba(${hexToRgb(color)}, 0.4)`}"
              :class="'ms'+spacing"/>
-        <div class="message-block">
-            <div>{{ message }}</div>
-            <div class="description">{{ description }}</div>
-        </div>
+        <div class="gitflow-message-block" v-html="message"></div>
     </div>
 </template>
 
@@ -25,13 +22,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.message-container {
+.gitflow-message-container {
     display: flex;
     width: auto;
     min-height: 30px;
     align-self: center;
 
-    .message-spacer {
+    .gitflow-message-spacer {
         width: 10px;
         border-right: 3px solid;
         margin: 3px 10px 3px 0;
@@ -52,16 +49,11 @@ export default {
         }
     }
 
-    .message-block {
+    .gitflow-message-block {
         align-self: center;
         width: calc(100% - 155px);
         flex: auto;
         padding: 2px 0;
-
-        .description {
-            font-size: 12px;
-        }
-
     }
 }
 </style>

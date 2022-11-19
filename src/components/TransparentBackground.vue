@@ -1,7 +1,7 @@
 <template>
-    <div class="transparent-background"
+    <div class="gitflow-transparent-background"
          :style="{'background-color': `rgba(${hexToRgb(color)}, 0.4)`}"
-         :class="right ? 'transparent-background-right' : ''"/>
+         :class="right ? 'gitflow-transparent-background-right' : ''"/>
 </template>
 
 <script>
@@ -22,14 +22,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.transparent-background {
+.gitflow-transparent-background {
     display: none;
     width: 30px;
     height: calc(100% - 6px);
     position: absolute;
     margin-top: 3px;
 
-    &.transparent-background-right {
+    &.gitflow-transparent-background-right {
         display: block;
         width: 15px;
         margin-left: 15px;

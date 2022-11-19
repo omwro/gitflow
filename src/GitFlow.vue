@@ -1,12 +1,12 @@
 <template>
     <div id="gitflow">
-        <div v-for="(item, index) in items" :key="index" class="row">
+        <div v-for="(item, index) in items" :key="index" class="gitflow-row">
             <template v-if="item.tag">
                 <Tag :color="colors[item.line]" :message="item.tag"/>
                 <HorizontalLine half :index="item.line" :color="colors[item.line]"/>
             </template>
             <Spacer v-else/>
-            <div class="flow">
+            <div class="gitflow-flow">
                 <template v-for="i in item.line">
                     <template v-if="i === item.line">
                         <Block v-if="item.style === 'commit'">
@@ -49,7 +49,11 @@
                                 <HorizontalLine :index="item.line" :color="colors[item.line]"/>
                             </Block>
                         </template>
-                        <VerticalLine v-else-if="item.style === 'commit'" :index="i" :color="colors[i]"/>
+                        <Block v-else-if="item.style === 'commit'">
+                            <VerticalLine :index="i" top :color="colors[i]"/>
+                            <VerticalLine :index="i" bottom :color="colors[i]"/>
+                            <HorizontalLine v-if="item.tag" half :index="i" :color="colors[item.line]"/>
+                        </Block>
                         <template v-else-if="item.style === 'merge'">
                             <Block v-if="i < item.merge" mobile>
                                 <VerticalLine :index="i" top :color="colors[i]"/>
@@ -112,7 +116,7 @@ export default {
     margin: 0 8px;
     max-width: 1000px;
 
-    .row {
+    .gitflow-row {
         display: flex;
         flex-direction: row;
         height: auto;
@@ -121,7 +125,7 @@ export default {
             background-color: rgba(black, .1);
         }
 
-        .flow {
+        .gitflow-flow {
             display: inline-flex;
             max-width: 30px;
         }
@@ -130,7 +134,7 @@ export default {
     @media (min-width: 768px) {
         font-size: 16px;
 
-        .flow {
+        .gitflow-flow {
             max-width: none !important;
         }
     }

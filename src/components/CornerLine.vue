@@ -1,6 +1,6 @@
 <template>
     <div :style="{'z-index': index, 'border-color': color}"
-         :class="[top ? 'cornerline-top' : '', bottom ? 'cornerline-bottom' : '']"/>
+         :class="[top ? 'gitflow-cornerline-top' : '', bottom ? 'gitflow-cornerline-bottom' : '']"/>
 
 </template>
 
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cornerline-top {
+.gitflow-cornerline-top {
     width: 13px;
     height: 17px;
     margin: 13px 13px 0 0;
@@ -32,7 +32,7 @@ export default {
     }
 }
 
-.cornerline-bottom {
+.gitflow-cornerline-bottom {
     width: 13px;
     height: 13px;
     margin: 0 13px 13px 0;

@@ -1,5 +1,5 @@
 <template>
-    <div class="block" :class="mobile ? 'block-mobile' : ''">
+    <div class="gitflow-block" :class="mobile ? 'gitflow-block-mobile' : ''">
         <slot/>
     </div>
 </template>
@@ -14,20 +14,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.block {
+.gitflow-block {
     width: 30px;
     display: flex;
     flex-wrap: wrap;
     position: relative;
     min-height: 30px;
 
-    &.block-mobile {
+    &.gitflow-block-mobile {
         position: absolute;
-        left: 87px;
+        left: 103px;
     }
 
     @media (min-width: 768px) {
-        &.block-mobile {
+        &.gitflow-block-mobile {
             position: relative;
             left: 0;
         }

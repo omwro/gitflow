@@ -1,10 +1,10 @@
 <template>
-    <div class="horizontal-line"
+    <div class="gitflow-horizontal-line"
          :style="{'z-index': index, 'border-color': color}"
          :class="[
-             left ? 'horizontal-line-left' : '',
-             right ? 'horizontal-line-right' : '',
-             half ? 'horizontal-line-half' : '']"/>
+             left ? 'gitflow-horizontal-line-left' : '',
+             right ? 'gitflow-horizontal-line-right' : '',
+             half ? 'gitflow-horizontal-line-half' : '']"/>
 
 </template>
 
@@ -22,48 +22,48 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.horizontal-line {
+.gitflow-horizontal-line {
     width: 30px;
     height: 13px;
     margin-top: 13px;
     border-top: 4px solid;
 
-    &.horizontal-line-right {
+    &.gitflow-horizontal-line-right {
         width: 15px;
         right: 0;
     }
 
-    &.horizontal-line-left {
+    &.gitflow-horizontal-line-left {
         width: 15px;
         left: 0;
     }
 
-    &.horizontal-line-half {
+    &.gitflow-horizontal-line-half {
         height: 14px;
         margin-top: 14px;
         border-width: 2px;
 
-        &:not(.horizontal-line-right):not(.horizontal-line-left) {
+        &:not(.gitflow-horizontal-line-right):not(.gitflow-horizontal-line-left) {
             width: 5px;
         }
     }
 
-    &.horizontal-line-right, &:not(.horizontal-line-half) {
+    &.gitflow-horizontal-line-right, &:not(.gitflow-horizontal-line-half) {
         display: none;
     }
 
     @media (min-width: 768px) {
-        &.horizontal-line-half:not(.horizontal-line-right):not(.horizontal-line-left) {
+        &.gitflow-horizontal-line-half:not(.gitflow-horizontal-line-right):not(.gitflow-horizontal-line-left) {
             width: 30px;
         }
 
-        &.horizontal-line-right, &:not(.horizontal-line-half) {
+        &.gitflow-horizontal-line-right, &:not(.gitflow-horizontal-line-half) {
             display: flex;
         }
     }
 }
 
-.block .horizontal-line {
+.gitflow-block .gitflow-horizontal-line {
     position: absolute;
 }
 </style>

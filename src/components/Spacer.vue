@@ -1,5 +1,5 @@
 <template>
-    <div class="spacer"/>
+    <div class="gitflow-spacer"/>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.spacer {
+.gitflow-spacer {
     margin-left: 79px;
 
     @media (min-width: 768px) {

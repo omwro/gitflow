@@ -1,5 +1,5 @@
 <template>
-    <div class="tag"
+    <div class="gitflow-tag"
          :style="{'background-color': `rgba(${hexToRgb(color)}, 0.4)`, 'border-color': color}">
         {{ message }}
     </div>
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tag {
+.gitflow-tag {
     width: 62px;
     height: 12px;
     padding: 5px;

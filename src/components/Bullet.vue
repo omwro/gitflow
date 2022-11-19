@@ -1,7 +1,7 @@
 <template>
     <div :style="{'background-color': color, 'border-color': color, 'z-index': index}"
-         class="bullet"
-         :class="image ? 'b-img' : 'b-s'">
+         class="gitflow-bullet"
+         :class="image ? 'gitflow-bullet-img' : 'gitflow-bullet-small'">
         <img v-if="image" :src="image" alt="image"/>
     </div>
 </template>
@@ -18,20 +18,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bullet {
+.gitflow-bullet {
     height: 30px;
     width: 30px;
     border-radius: 50%;
     align-self: center;
 
-    &.b-s {
+    &.gitflow-bullet-small {
         height: 16px;
         width: 16px;
         margin: 7px;
         position: relative;
     }
 
-    &.b-img {
+    &.gitflow-bullet-img {
         height: 24px;
         width: 24px;
         border: 3px solid;
@@ -45,8 +45,4 @@ export default {
         }
     }
 }
-
-//.block .b-s {
-//    position: absolute;
-//}
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <div class="vertical-line"
+    <div class="gitflow-vertical-line"
          :style="{'z-index': index, 'border-color': color}"
-         :class="[top ? 'vertical-line-top' : '', bottom ? 'vertical-line-bottom' : '']"/>
+         :class="[top ? 'gitflow-vertical-line-top' : '', bottom ? 'gitflow-vertical-line-bottom' : '']"/>
 
 </template>
 
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vertical-line {
+.gitflow-vertical-line {
     width: 13px;
     height: auto;
     margin-right: 13px;
@@ -26,26 +26,22 @@ export default {
     flex: none;
     position: absolute;
 
-    &.vertical-line-top {
+    &.gitflow-vertical-line-top {
         height: 100% !important;
         top: 0;
     }
 
-    &.vertical-line-bottom {
+    &.gitflow-vertical-line-bottom {
         height: 100% !important;
         bottom: 0;
     }
 
     @media (min-width: 768px) {
         position: inherit;
-
-        //border-radius: 0;
-        //border-top: 0;
-        //border-bottom: 0;
     }
 }
 
-.block .vertical-line {
+.gitflow-block .gitflow-vertical-line {
     position: absolute;
 }
 </style>
