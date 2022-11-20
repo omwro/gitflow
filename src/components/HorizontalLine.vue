@@ -24,9 +24,14 @@ export default {
 <style lang="scss" scoped>
 .gitflow-horizontal-line {
     width: 30px;
-    height: 13px;
-    margin-top: 13px;
+    height: auto;
+    align-self: center;
     border-top: 4px solid;
+    display: none;
+
+    @media (min-width: 768px) {
+        display: flex;
+    }
 
     &.gitflow-horizontal-line-right {
         width: 15px;

@@ -44,4 +44,13 @@ export default {
 .gitflow-block .gitflow-vertical-line {
     position: absolute;
 }
+
+.gitflow-row:last-child .gitflow-block .gitflow-vertical-line{
+    &.gitflow-vertical-line-top {
+        height: 50% !important;
+    }
+    &.gitflow-vertical-line-bottom {
+        height: 0 !important;
+    }
+}
 </style>

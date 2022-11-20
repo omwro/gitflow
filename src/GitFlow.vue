@@ -2,8 +2,8 @@
     <div id="gitflow">
         <div v-for="(item, index) in items" :key="index" class="gitflow-row">
             <template v-if="item.tag">
-                <Tag :color="colors[item.line]" :message="item.tag"/>
-                <HorizontalLine half :index="item.line" :color="colors[item.line]"/>
+                <Tag class="gitflow-tag-desktop" :color="colors[item.line]" :message="item.tag"/>
+                <HorizontalLine class="gitflow-tag-desktop" half :index="item.line" :color="colors[item.line]"/>
             </template>
             <Spacer v-else/>
             <div class="gitflow-flow">
@@ -84,7 +84,8 @@
                      :spacing="item.spacing"
                      :color="colors[item.line]"
                      :message="item.msg"
-                     :description="item.desc"/>
+                     :description="item.desc"
+                     :tag="item.tag"/>
         </div>
     </div>
 </template>
@@ -113,12 +114,12 @@ export default {
     flex-direction: column;
     height: 100%;
     font-size: 14px;
-    margin: 0 8px;
     max-width: 1000px;
 
     .gitflow-row {
         display: flex;
         flex-direction: row;
+        min-height: 36px;
         height: auto;
 
         &:hover {
@@ -128,6 +129,15 @@ export default {
         .gitflow-flow {
             display: inline-flex;
             max-width: 30px;
+            position: relative;
+        }
+
+        .gitflow-tag-desktop {
+            display: none;
+
+            @media (min-width: 768px) {
+                display: flex;
+            }
         }
     }
 

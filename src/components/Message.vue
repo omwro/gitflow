@@ -3,16 +3,23 @@
         <div class="gitflow-message-spacer"
              :style="{'border-color': color, 'background-color': `rgba(${hexToRgb(color)}, 0.4)`}"
              :class="'ms'+spacing"/>
-        <div class="gitflow-message-block" v-html="message"></div>
+        <div class="gitflow-message-block">
+            <template v-if="tag">
+                <Tag class="gitflow-tag-mobile" :color="color" :message="tag"/>
+            </template>
+            <div v-html="message"/>
+        </div>
     </div>
 </template>
 
 <script>
 import utils from "@/Utils";
+import Tag from "@/components/Tag";
 
 export default {
     name: "Message",
-    props: ["spacing", "color", "message", "description"],
+    components: {Tag},
+    props: ["spacing", "color", "message", "description", "tag"],
     methods: {
         hexToRgb(color) {
             return utils.hexToRgb(color)
@@ -25,7 +32,7 @@ export default {
 .gitflow-message-container {
     display: flex;
     width: auto;
-    min-height: 30px;
+    min-height: 36px;
     align-self: center;
 
     .gitflow-message-spacer {
@@ -54,6 +61,14 @@ export default {
         width: calc(100% - 155px);
         flex: auto;
         padding: 2px 0;
+
+        .gitflow-tag-mobile {
+            display: flex;
+
+            @media (min-width: 768px) {
+                display: none;
+            }
+        }
     }
 }
 </style>

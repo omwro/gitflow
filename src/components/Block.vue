@@ -23,13 +23,13 @@ export default {
 
     &.gitflow-block-mobile {
         position: absolute;
-        left: 103px;
+        left: 0;
+        height: 100%;
     }
 
     @media (min-width: 768px) {
         &.gitflow-block-mobile {
             position: relative;
-            left: 0;
         }
     }
 }
